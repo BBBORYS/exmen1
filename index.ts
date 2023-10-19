@@ -61,3 +61,24 @@ export interface IFuction {
       ]
     }
   ];
+
+
+
+function desactivarFuncion(
+    funciones: IFuction[], 
+    id: number,
+    callback: (funcion: IFuction) => void
+  ) {
+  
+    funciones.forEach(funcion => {
+      if (funcion.id === id) {
+        funcion.status = 'inactivo';
+        callback(funcion); 
+      }
+    });
+  
+  }
+  
+  desactivarFuncion(funciones, 2, funcionEliminada => {
+    console.log('Función eliminada:', funcionEliminada); 
+  });
