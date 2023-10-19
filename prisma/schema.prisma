@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model Function {
+    id        Int     @id @default(autoincrement())
+    name      String
+    returnType String
+    status    String
+    parameters Parameter[]
+  }
+  model Parameter {
+    id        Int    @id @default(autoincrement())
+    name      String  
+    returnType String
+    status    String
+    function   Function @relation(fields: [functionId], references: [id])
+    functionId Int
+  }
+  
